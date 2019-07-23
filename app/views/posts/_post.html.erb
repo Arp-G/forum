@@ -1,10 +1,6 @@
 <h2>
-	<%= post.title %>
+	<%= link_to post.title, post %>
 </h2>
-
-<p>
-	<%= post.content %>
-</p>
 
 <p>
 	Published <%= time_ago_in_words(post.created_at) %> Ago
