@@ -3,5 +3,9 @@
 </h2>
 
 <p>
-	Published <%= time_ago_in_words(post.created_at) %> Ago
+	Published <%= time_ago_in_words(post.created_at) %> Ago by 
+</p>
+
+<p>
+	<%=post.user.email %>
 </p>
