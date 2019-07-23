@@ -1,0 +1,7 @@
+<div class="comment">
+	<p class = "content"><%= comment.comment %></p>
+	<p class = "user"><%= comment.user.email %></p>
+	<p class = "comment-links"><%= link_to "Delete", post_comment_path(comment.post,comment),method: :delete , data: {confirm: "are you sure ?" }%>
+	<%= link_to "Edit", edit_post_comment_path(comment.post,comment)%>	
+	</p>
+</div>
