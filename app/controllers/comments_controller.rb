@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
 		if @comment.save
 			redirect_to post_path(@post) , notice: "successfully posted comment" 
 		else
-			render "new"
+			redirect_to post_path(@post) , notice: "Failed to post comment, comment cannot be blank" 
 		end
 	end
 
