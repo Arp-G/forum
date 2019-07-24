@@ -1,0 +1,11 @@
+<h1> Search Results </h1>
+
+<h2> <%= @matches.size %> matching search results  </h2>
+
+<% @matches.each do |post| %>
+	<%= render post%>
+<% end %>
+
+<br>
+
+<%= link_to "Home",root_path %>

@@ -54,7 +54,7 @@ class CommentsController < ApplicationController
 		@comment = @post.comments.find(params[:id])
 
 		if current_user.id != @comment.user_id
-			redirect_to posts_path(@post), notice: "Now cannot change others comments"
+			redirect_to posts_path(@post), notice: "You cannot change others comments"
 		end
 
 	end
