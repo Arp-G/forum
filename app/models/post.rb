@@ -1,10 +1,11 @@
 class Post < ApplicationRecord
 	belongs_to :user
 	has_many :comments, dependent: :destroy
+	has_many :likes , dependent: :destroy
 
 	validates :title,:content, presence: true
 
-	validates :content, length: { minimum:30 }
+	validates :content, length: { minimum: 30 }
 
 	def make_pdf
 

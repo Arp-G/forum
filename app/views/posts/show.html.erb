@@ -6,9 +6,27 @@
 
 	<p> <%= @post.content %> </p>
 
+	<p>
+		<strong><%= pluralize(@post.likes.count,"like") %> </strong> for this post
+		<br> 
+		<% if current_user %>
+
+			<% flag = @post.likes.any? do |like| %>
+				<% like.user_id == current_user.id %>
+			<% end %>
+
+			<% unless  flag %>
+				<%= link_to "Like", post_likes_path(@post), method: :post  %>
+			<% else %>
+				<%= link_to "Unlike", post_like_path(@post), method: :delete %>
+			<% end %>
+
+		<% end %>
+	</p>
+
 	<p> 
 		<%= link_to "Get pdf", post_pdf_path(@post) %>
-		<% if current_user.id == @post.user_id %>
+		<% if current_user and current_user.id == @post.user_id %>
 			<%= link_to "Edit", edit_post_path(@post) %>
 			<%= link_to "Destroy", post_path(@post), method: :delete , data: { confirm: "Are you sure ?" } %>
 		<% end %>

@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
 	before_action :find_post, only: [:show,:edit,:update,:destroy]
 
-	before_action :authenticate_user!, except: [:index,:show]
+	before_action :authenticate_user!, except: [:index,:show,:search]
 
 	before_action :correct_user?, only: [:edit,:update,:destroy]
 
