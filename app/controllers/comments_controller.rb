@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
 
 
+	before_action :authenticate_user!,:correct_user? , only: [:edit,:update,:destroy]
+
+
 	def create
 		@post = Post.find(params[:post_id])
 		@comment = @post.comments.create(comment_params)
@@ -15,13 +18,13 @@ class CommentsController < ApplicationController
 	end
 
 	def edit
-		@post = Post.find(params[:post_id])
-		@comment = @post.comments.find(params[:id])
+		#@post = Post.find(params[:post_id])
+		#@comment = @post.comments.find(params[:id])
 	end
 
 	def update
-		@post = Post.find(params[:post_id])
-		@comment = @post.comments.find(params[:id])
+		#@post = Post.find(params[:post_id])
+		#@comment = @post.comments.find(params[:id])
 
 		if @comment.update(comment_params)
 			redirect_to post_path(@post), notice: "Comment was updated"
@@ -33,8 +36,8 @@ class CommentsController < ApplicationController
 
 
 	def destroy
-		@post = Post.find(params[:post_id])
-		@comment = @post.comments.find(params[:id])
+		#@post = Post.find(params[:post_id])
+		#@comment = @post.comments.find(params[:id])
 		@comment.destroy
 
 		redirect_to @post, notice: "The comment was deleted"
@@ -44,5 +47,15 @@ class CommentsController < ApplicationController
 
 	def comment_params
 		params.require("comment").permit(:comment)
+	end
+
+	def correct_user?
+		@post = Post.find(params[:post_id])
+		@comment = @post.comments.find(params[:id])
+
+		if current_user.id != @comment.user_id
+			redirect_to posts_path(@post), notice: "Now cannot change others comments"
+		end
+
 	end
 end

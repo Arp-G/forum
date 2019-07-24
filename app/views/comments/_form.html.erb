@@ -4,11 +4,6 @@
 		<%= f.text_area :comment , placeholder: "Write your comment here..."%>
 	</p>
 	<p>
-		<% if @comment %>
-			<%= f.submit "Update comment"%> 
-			<!-- There is no new action in the comments controller which assigns @comment so its null when the form is rendered for creating a new comment whereas for updating a comment the edit action assigns @comment so we can rely on this to change the button msg -->
-		<% else %>
-			<%= f.submit "Create comment"%>
-		<% end %>
+		<%= f.submit "Create comment"%> 
 	</p>
 <% end %>

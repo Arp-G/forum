@@ -10,7 +10,7 @@
 		<h2> <%= @post.comments.count %> comments for this post</h2>
 	</div>
 
-	<%= render @post.comments %>
+	<%= render @post.comments.order("created_at desc") %>
 
 	<h3>
 		Reply to thread
